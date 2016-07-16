@@ -107,20 +107,21 @@ void loop()
     digitalWrite(13,LOW);
   }
   
-  b = lightLevels(a,0,-5);
+  b = lightLevels(a,0.5,-1);
   analogWrite(13,b);
-  Serial.println(b);
+  //Serial.println(b);
   delay(30);
 }
 
-int lightLevels(double value,int _min,int _max){
+double lightLevels(double value,int _min,int _max){
   //returns a value between 1 and 255 in steps of 32
   int steps = 32;
   int range = 256;
   double numerator = value-(double)_min;
   double denominator = (double)(_max-_min);
-  int stepped = abs((int)(floor((numerator/denominator)*steps))*(steps/range));
-  return stepped;
+  int stepped = (numerator/denominator)*(128);
+    Serial.println(stepped);
+  return abs(stepped);
 }
 
 double getPressure()

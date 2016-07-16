@@ -119,7 +119,7 @@ double lightLevels(double value,int _min,int _max){
   int range = 256;
   double numerator = value-(double)_min;
   double denominator = (double)(_max-_min);
-  int stepped = (numerator/denominator)*(128);
+  int stepped = (numerator/denominator)*(8);
     Serial.println(stepped);
   return abs(stepped);
 }

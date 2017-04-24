@@ -14,7 +14,7 @@ def findSprites(directory, ext = [".gif", ".png", ".GIF", ".PNG"]):
 	return sprites
 
 def incrementSprite(spriterect, sprites):
-	scale = 4
+	scale = 12
 	x,y,u,v = spriterect
 	idx = random.randint(0,len(sprites)-1)
 	s = sprites[idx]
@@ -27,8 +27,8 @@ def incrementSprite(spriterect, sprites):
 
 pygame.init()
 
-size = width, height = 320,  240
-speed = [2,2]
+size = width, height = 1024,  768
+speed = [8,12]
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
@@ -41,9 +41,9 @@ sprite, spriterect = incrementSprite(spriterect,sprites)
 
 while True:
 	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
+		if event.type == pygame.QUIT or (event.type== pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
 			pygame.quit()
-			sys.ext()
+			sys.exit()
 
 	spriterect = spriterect.move(speed)
 	if spriterect.left < 0 or spriterect.right > width:

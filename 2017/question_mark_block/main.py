@@ -14,11 +14,12 @@ def findSprites(directory, ext = [".gif", ".png", ".GIF", ".PNG"]):
 	return sprites
 
 def incrementSprite(spriterect, sprites):
+	scale = 4
 	x,y,u,v = spriterect
 	idx = random.randint(0,len(sprites)-1)
 	s = sprites[idx]
 	sprite = pygame.image.load(s)
-	#sprite = pygame.transform.scale(sprite, (sprite.get_size()[0]*2,sprite.get_size()[1]*2))
+	sprite = pygame.transform.scale(sprite, (int(sprite.get_size()[0])*scale,int(sprite.get_size()[1])*scale))
 	spriterect = sprite.get_rect()
 	spriterect.x = x
 	spriterect.y = y
@@ -36,6 +37,7 @@ idx = random.randint(0,len(sprites)-1)
 s = sprites[idx]
 sprite = pygame.image.load(s)
 spriterect = sprite.get_rect()
+sprite, spriterect = incrementSprite(spriterect,sprites)
 
 while True:
 	for event in pygame.event.get():

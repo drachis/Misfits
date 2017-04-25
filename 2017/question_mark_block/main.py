@@ -3,6 +3,7 @@ import os
 import pygame 
 import random
 
+
 def findSprites(directory, ext = [".gif", ".png", ".GIF", ".PNG"]):
 	sprites =  []
 	for r,d,f in os.walk(directory):
@@ -14,7 +15,7 @@ def findSprites(directory, ext = [".gif", ".png", ".GIF", ".PNG"]):
 	return sprites
 
 def incrementSprite(spriterect, sprites):
-	scale = 12
+	scale = 4
 	x,y,u,v = spriterect
 	idx = random.randint(0,len(sprites)-1)
 	s = sprites[idx]
@@ -26,9 +27,9 @@ def incrementSprite(spriterect, sprites):
 	return sprite, spriterect
 
 pygame.init()
-
-size = width, height = 1024,  768
-speed = [8,12]
+clock = pygame.time.Clock()
+size = width, height = 640, 480
+speed = [8,8]
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
@@ -38,7 +39,7 @@ s = sprites[idx]
 sprite = pygame.image.load(s)
 spriterect = sprite.get_rect()
 sprite, spriterect = incrementSprite(spriterect,sprites)
-
+pygame.display.toggle_fullscreen()
 while True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT or (event.type== pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
@@ -56,7 +57,9 @@ while True:
 	screen.fill(black)
 	screen.blit(sprite, spriterect)
 	pygame.display.flip()
+	time = clock.tick(60)
+	if (time < 1000/60):
+		pygame.time.wait(1000/60-time)
 
 
-
-
+	

@@ -62,4 +62,33 @@ while True:
 		pygame.time.wait(1000/60-time)
 
 
-	
+'''
+plan for slot machine
+
+SETUP
+initialize sprite locations,
+Each location has a sprite / rendering slot, (class?)
+Create a pool or loaded potential sprites ( to minimize disk read time)
+Function
+	The locations above the current are randomized from the pool of sprites
+	    0 - teleport to 3 when this position is reached
+	   [1] - visible
+	   	2
+	   	3 - start location
+initilize each spin with a different , 
+	Select an amount of time before result is displayed (2-5s? make this easy to tune)
+INPUT LOOP
+on button press / input
+	disable further input until after refresh 
+	animate the sprites moving up the screen space, 
+		since the input comes from the user press at the bottom on the screen
+		if a sprite reaches location 0 teleport it to location 3 at the bottom of the queue.
+	If the result is a coin allow the user to continue to hit the block, make coin sounds?
+	Then after power up is revealed have a cooldown where the block is in a deactivated state (bricks)
+	Reactivate after 10-30s as a question mark [?] 
+		- this is to prevent people from spamming hits.
+		- make some sort of power-up available (yoshi mount?) sound 
+
+
+
+

@@ -17,10 +17,11 @@ def findSprites(directory, ext = [".gif", ".png", ".GIF", ".PNG"]):
 	return sprites
 
 def incrementSprite(spriterect, sprites):
-	scale = 4
+	scale = 8*4
 	x,y,u,v = spriterect
 	idx = random.randint(0,len(sprites)-1)
 	s = sprites[idx]
+	print(s)
 	sprite = pygame.image.load(s)
 	sprite = pygame.transform.scale(sprite, (int(sprite.get_size()[0])*scale,int(sprite.get_size()[1])*scale))
 	spriterect = sprite.get_rect()
@@ -43,6 +44,7 @@ def pygameMain():
 	spriterect = sprite.get_rect()
 	sprite, spriterect = incrementSprite(spriterect,sprites)
 	pygame.display.toggle_fullscreen()
+	pygame.mouse.set_visible(False)
 	#limit events that are listened for
 	pygame.event.set_allowed(None)
 	pygame.event.set_allowed(pygame.QUIT)
@@ -62,7 +64,7 @@ def pygameMain():
 			if button:
 				print (pin , ", open")
 			else:
-				incrementSprite(spriterect, sprites)
+				sprite, spriterect = incrementSprite(spriterect, sprites)
 				print(pin , ", pressed")
 			prev = button
 		"""spriterect = spriterect.move(speed)

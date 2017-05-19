@@ -11,7 +11,7 @@ def findSprites(directory, ext = [".gif", ".png", ".GIF", ".PNG"]):
 			split = os.path.splitext(fi)
 			if split[1] in ext:
 				sprites.append(os.path.join(r,fi))
-				print(sprites[-1])
+				print (sprites[-1])
 	return sprites
 
 def incrementSprite(spriterect, sprites):
@@ -59,7 +59,4 @@ while True:
 	pygame.display.flip()
 	time = clock.tick(60)
 	if (time < 1000/60):
-		pygame.time.wait(1000/60-time)
-
-
-	
+		pygame.time.wait(int(1000/60-time))

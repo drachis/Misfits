@@ -11,6 +11,7 @@ except:
 	pin = "DUMMY"
 	hasGPIO = False
 prev = False
+scriptRoot = os.path.dirname(os.path.abspath(__file__))
 
 def findSprites(directory, ext = [".gif", ".png", ".GIF", ".PNG"]):
 	sprites =  []
@@ -90,11 +91,17 @@ def pygameMain():
 	white = 255, 255, 255
 
 	screen = pygame.display.set_mode(size)
-	sprites = findSprites("./sprites/")
+	sprites = findSprites(
+                os.path.join(
+                        scriptRoot,
+                        "sprites/")
+                )
 	idx = random.randint(0,len(sprites)-1)
 	s = sprites[idx]
 	sprite = pygame.image.load(s)
-	questionMark = pygame.image.load("questonmark_front.png")
+	questionMark = pygame.image.load(
+                os.path.join(scriptRoot,"questonmark_front.png")
+                )
 	questionMark = pygame.transform.scale(questionMark,(int(size[0]*1.2), int(size[0]*1.2)))
 	questionRect = questionMark.get_rect()
 	questionRect.x = size[0]/2-questionRect[2]/2
@@ -110,11 +117,11 @@ def pygameMain():
 	prev = False
 	button = True
 	swapped = time.time()
-	hold = 8
+	hold = 3
 	ready = True
 	while True:
 		for event in pygame.event.get():
-			print(event)
+			#print(event)
 			if (event.type == pygame.KEYUP and event.key == 27) or (event.type == pygame.QUIT) :
 				pygame.quit()
 				sys.exit()
@@ -128,10 +135,11 @@ def pygameMain():
 		if button != prev and ready: 
 			print (button)
 			if button:
-				print (pin , ", open")
+                                pass
+				#print (pin , ", open")
 			else:
 				sprite, spriterect = incrementSprite(spriterect, sprites)
-				print(pin , ", pressed")
+				#print(pin , ", pressed")
 				swapped = time.time()
 			prev = button
 		spriterect.x = size[0]/2 - sprite.get_size()[0]/2 

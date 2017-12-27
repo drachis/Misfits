@@ -131,8 +131,8 @@ def pygameMain():
     questionRect.y = size[1]/2-questionRect[3]/2
     spriterect = sprite.get_rect()
     sprite, spriterect = incrementSprite(spriterect,sprites)
-    #pygame.display.toggle_fullscreen()
-    #pygame.mouse.set_visible(False)
+    pygame.display.toggle_fullscreen()
+    pygame.mouse.set_visible(False)
     #limit events that are listened for
     pygame.event.set_allowed(None)
     pygame.event.set_allowed(pygame.QUIT)

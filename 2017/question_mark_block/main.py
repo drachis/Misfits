@@ -60,10 +60,12 @@ def incrementSprite(spriterect, sprites):
 
 def checkForShutdown():
         '''
-        this uses some globar variables to store state; holding, startTime,
-        shutdownDelay
+        this uses some global variables to store state;
         '''
-        if GPIO.input(pin) == 1 and holding == 0:
+        global holding
+        global startTime
+        global shutdownDelay
+        if GPIO.input(pin) == 1 and not holding:
                 holding = True
                 startTime = time.time()
         if GPIO.input(pin) == 0:
@@ -129,8 +131,8 @@ def pygameMain():
     questionRect.y = size[1]/2-questionRect[3]/2
     spriterect = sprite.get_rect()
     sprite, spriterect = incrementSprite(spriterect,sprites)
-    pygame.display.toggle_fullscreen()
-    pygame.mouse.set_visible(False)
+    #pygame.display.toggle_fullscreen()
+    #pygame.mouse.set_visible(False)
     #limit events that are listened for
     pygame.event.set_allowed(None)
     pygame.event.set_allowed(pygame.QUIT)
@@ -156,7 +158,7 @@ def pygameMain():
         if button != prev and ready:
             print (button)
             if button:
-                                pass
+                pass
                 #print (pin , ", open")
             else:
                 sprite, spriterect = incrementSprite(spriterect, sprites)
